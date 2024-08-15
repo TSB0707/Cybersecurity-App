@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f5f5; /* Whitish background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column; /* Added for vertical alignment */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+        }
+
+        .section {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #333; /* Black border */
+            border-radius: 10px;
+            background-color: #fff; /* White background */
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333; /* Black text color */
+            text-align: center;
+        }
+
+        .section label {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            display: block;
+            color: #333;
+        }
+
+        .section input[type="text"],
+        .section input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .section button[type="submit"] {
+            width: 100%;
+            background-color: #6c5ce7; /* Purple background */
+            color: #fff; /* White text */
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .section button[type="submit"]:hover {
+            background-color: #5b4dc8; /* Darker purple on hover */
+        }
+
+        /* Heading styles */
+        .heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            color: #6c5ce7; /* Purple color */
+            margin: 0;
+        }
+
+        .heading p {
+            font-size: 18px;
+            color: #333; /* Black text color */
+            margin: 5px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="heading">
+    <h1>SAND</h1>
+    <p>Spam & Anomaly Neural Detector</p>
+</div>
+
+<div class="container">
+    <!-- Spam Text Detector Section -->
+    <div class="section">
+        <h2>Spam Text Detector</h2>
+        <form method="POST" action="{% url 'index' %}">
+            {% csrf_token %}
+            <label for="email_text">Email:</label>
+            <input type="text" id="email_text" name="email_text" required>
+            <button type="submit">Submit Email</button>
+        </form>
+        {% if email_result %}
+            <h2>Email Prediction Result:</h2>
+            <p>{{ email_result }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Deepfake Detector Section -->
+    <div class="section">
+        <h2>Deepfake Detector</h2>
+        <form method="POST" action="{% url 'index' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="video_file">Upload Video:</label>
+            <input type="file" id="video_file" name="video_file" required>
+            <button type="submit">Upload Video</button>
+        </form>
+        {% if video_result %}
+            <h2>Video Prediction Result:</h2>
+            <p>{{ video_result }}</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+</head>
+<body>
+    <h1>Detection Result</h1>
+
+    <h2>Email Text:</h2>
+    <p>{{ email_text }}</p>
+
+    <h2>Video File:</h2>
+    {% if video_file %}
+        <p>Uploaded video: {{ video_file }}</p>
+    {% else %}
+        <p>No video file uploaded.</p>
+    {% endif %}
+
+    <a href="{% url 'index' %}">Go Back</a>
+</body>
+</html>
